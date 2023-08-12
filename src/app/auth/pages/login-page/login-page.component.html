@@ -1,0 +1,31 @@
+<form [formGroup]="loginForm">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Username</label>
+    <input
+      formControlName="username"
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      placeholder="usuario"
+    />
+    <span class="form-text text-danger">Invalid Username</span>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input
+      formControlName="password"
+      type="password"
+      class="form-control mb-2"
+      id="exampleInputPassword1"
+    />
+    <span class="form-text text-danger">Wrong password</span>
+    <re-captcha
+      (resolved)="resolved($event)"
+      (errored)="onError($event)"
+      errorMode="handled"
+      [siteKey]="siteKey"
+    ></re-captcha>
+  </div>
+  <button type="submit" class="btn btn-primary">Log in</button>
+</form>
