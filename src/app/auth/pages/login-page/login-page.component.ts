@@ -5,26 +5,38 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { RecaptchaErrorParameters } from 'ng-recaptcha';
 import { enviroment } from 'src/enviroments/enviroment';
+import { ValidatorsService } from '../../services/validators.service';
+
 @Component({
   selector: 'login-page',
   templateUrl: './login-page.component.html',
   styles: [],
 })
 export class LoginPageComponent {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private customValidators: ValidatorsService
+  ) {}
+
   public siteKey = enviroment.recaptchaSiteKey;
 
   public loginForm: FormGroup = this.formBuilder.group({
     username: ['', [Validators.required]],
     password: ['', [Validators.required]],
+    recaptcha: new FormControl(null, Validators.required),
   });
-  public resolved(captchaResponse: string): void {
-    console.log(`Resolved captcha with response: ${captchaResponse}`);
+
+  public validCaptcha: boolean = false;
+  public isValidField(field: string): boolean | null {
+    return this.customValidators.isValidField(this.loginForm, field);
   }
 
-  public onError(errorDetails: RecaptchaErrorParameters): void {
-    console.log(`reCAPTCHA error encountered; details:`, errorDetails);
+  public onSubmit(): void {
+    this.loginForm.markAllAsTouched();
+    if (this.loginForm.invalid) return;
+  }
+  public resolved(captchaResponse: string) {
+    this.validCaptcha = this.customValidators.isValidCaptcha(captchaResponse);
   }
 }

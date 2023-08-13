@@ -4,7 +4,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthRoutingModule,
     RecaptchaModule,
     ReactiveFormsModule,
+    RecaptchaFormsModule,
   ],
 })
 export class AuthModule {}
