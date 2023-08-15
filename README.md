@@ -1,27 +1,47 @@
-# Dom
+# Prueba becario 1.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+En esta prueba se solicito hacer, 3 pantallas diferentes:
 
-## Development server
+    1. Un login donde el usuario pueda iniciar sesión. Este login debe contar con una recaptcha.
+    2. Un regitro que tenga 5 campos diferentes.
+    4. Una página de busqueda donde el usuario pueda ingresar una palabra y con eso se obtengan gifs y se muestre el resultado en pantalla.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para realizar la prueba se utilizo Angular y boostrap.
 
-## Code scaffolding
+## Proyecto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Puede clonar este proyecto y hacer uso de el con los siguientes comandos.
 
-## Build
+1.  Una vez clonado
+    `npm i` para instalar dependencias
+2.  `ng serve -o ` o `npm start` para correr el programa y ver la ejecución en su navegador web.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Login
 
-## Running unit tests
+Para esta pantalla se creo un formulario donde se pide usuario y contraseña, a demas de agregar la recaptcha.
+Para la recaptcha se utilizo la versión dos con una api key de prueba.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Imagen del resultado.
 
-## Running end-to-end tests
+![imagen de un login](./src/assets/login.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+El login cuenta con validaciones de usuario existente, contraseña correcta y recaptcha.
 
-## Further help
+## Registro
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Para el registro se creo un formulario reactivo, donde se pide el username, email, edad y contraseña al usuario.
+Todos los campos tienen validaciones y se almacenan los datos de inicio de sesión en localstorage.
+
+Imagen Registro.
+
+![pantalla de registro](./src/assets/register.png)
+
+## Search
+
+Para la busqueda se utilizo un form donde se le permite al usuario ingresar texto, con base en esto se buscan diferentes gifs en giphy, utilizando su api https://developers.giphy.com/
+
+Una vez que el usuario ingreso una palabra se lanza la petición y se obtiene una lista que se limito a 12 gifs, cuando se obtiene la respuesta los gifs obtenidos e muestran en pantalla con un titulo decriptivo.
+
+Imagen Search.
+
+![pantalla de busqueda](./src/assets/search.png)
