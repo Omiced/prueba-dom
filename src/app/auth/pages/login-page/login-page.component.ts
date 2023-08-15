@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { enviroment } from 'src/enviroments/enviroment';
 import { ValidatorsService } from '../../services/validators.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'login-page',
@@ -16,10 +17,11 @@ import { ValidatorsService } from '../../services/validators.service';
 export class LoginPageComponent {
   constructor(
     private formBuilder: FormBuilder,
-    private customValidators: ValidatorsService
+    private customValidators: ValidatorsService,
+    private loginService: LoginService
   ) {}
 
-  public siteKey = enviroment.recaptchaSiteKey;
+  public siteKey = enviroment.captcha.recaptchaSiteKey;
 
   public loginForm: FormGroup = this.formBuilder.group({
     username: ['', [Validators.required]],
@@ -34,9 +36,16 @@ export class LoginPageComponent {
 
   public onSubmit(): void {
     this.loginForm.markAllAsTouched();
+    console.log(typeof this.loginForm.value);
     if (this.loginForm.invalid) return;
+    this.onLogin(this.loginForm.value);
   }
   public resolved(captchaResponse: string) {
     this.validCaptcha = this.customValidators.isValidCaptcha(captchaResponse);
+  }
+
+  onLogin(user: any): void {
+    const { username, password } = user;
+    this.loginService.login(username, password);
   }
 }

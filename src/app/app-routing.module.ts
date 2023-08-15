@@ -7,6 +7,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./auth/auth.module').then((module) => module.AuthModule),
   },
+  {
+    path: 'tweets',
+    loadChildren: () =>
+      import('./tweets/tweets.module').then((module) => module.TweetsModule),
+  },
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

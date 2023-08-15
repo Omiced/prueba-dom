@@ -1,0 +1,54 @@
+<header class="p-3 bg-dark text-white mb-5">
+  <div class="container w-100">
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+      <img
+        src="../../../../assets/vicanjo-high-resolution-logo-color-on-transparent-background.png"
+        style="width: 4rem"
+        class="mb-3"
+      />
+      <form
+        class="col-lg-6 mb-3 mb-lg-0 me-lg-3"
+        [formGroup]="searchForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <input
+          type="search"
+          class="form-control form-control-dark"
+          placeholder="Search..."
+          aria-label="Search"
+          formControlName="search"
+        />
+      </form>
+      <div class="text-end">
+        <button
+          type="button"
+          class="btn btn-outline-light me-2"
+          (click)="onLogout()"
+        >
+          Log out
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container justify-content-center align-items-center vw-100">
+  <div class="col-12">
+    <div class="row gap-4 mx-auto justify-content-between">
+      <div
+        class="card col-md-3 col-4"
+        style="width: 18rem; margin: 0 auto"
+        *ngFor="let gif of gifs"
+      >
+        <img
+          [src]="gif.images.downsized_medium.url"
+          class="card-img-top"
+          [alt]="gif.title"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ gif.title }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
